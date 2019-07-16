@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "xbrand/base/head.html" %}
+<body>
+    <div id="page">
+        {% include "xbrand/base/header.html" %}
+        {% block content %}
+        {% endblock %}
+        {% include "xbrand/base/footer.html" %}
+    </div>
+    {% include "xbrand/base/js.html" %}
+</body>
+</html>
