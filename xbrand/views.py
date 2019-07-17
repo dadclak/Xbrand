@@ -11,3 +11,15 @@ def home(request):
 
 def product(request):
     return render(request, 'xbrand/product.html')
+
+def men(request):
+    return render(request, 'xbrand/men.html')
+
+def women(request):
+    return render(request, 'xbrand/women.html')
+
+def jewelry(request):
+    return render(request, 'xbrand/bag.html')
+
+def contact(request):
+    return render(request, 'xbrand/contact.html')
