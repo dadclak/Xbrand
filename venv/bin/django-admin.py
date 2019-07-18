@@ -1,4 +1,4 @@
-#!/home/dadclak/Projects/xbrand/xbrand_clothes/venv/bin/python3
+#!/home/dadclak/Projects/xbrand/Xbrand/venv/bin/python3
 from django.core import management
 
 if __name__ == "__main__":
