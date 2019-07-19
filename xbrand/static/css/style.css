@@ -2179,10 +2179,21 @@ ol {
 }
 
 .ban {
-	width: 400px;
-	height: 100px;
 	background-color: #962525;
 	color: rgb(231, 255, 13);
+	text-align: center;
+}
+.bandown {
+	margin-top: 10px
+}
+.banleft{
+	padding-right: 5px;
+}
+.banrigth{
+	padding-left: 5px;
+}
+.container .row {
+	padding: 50px 0px;
 }
 
 /* ----------------

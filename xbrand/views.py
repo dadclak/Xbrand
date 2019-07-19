@@ -39,4 +39,33 @@ def jewelry(request):
     return render(request, 'xbrand/bag.html', {'products': products, 'news': newProducts, 'banners': banner})
 
 def contact(request):
-    return render(request, 'xbrand/contact.html')
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            phone = form.cleaned_data['phone']
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+            recipients = ['branded.clothing.pl@gmail.com']
+            info = {"success": True, "info": ''}
+            try:
+                send_mail("[Xbrand Clothes] Order",
+                        "\n Order with Web Pages 'Xbrand Clothes' \n\n"
+                        "\nName: %s"
+                        "\nE-mail: %s"
+                        "\nPhone: %s"
+                        "\nMessage: %s"
+                        % (name, email, phone, message),
+                        'xbrand@gmail.com', recipients
+                )
+                info["info"] = 'Successful! We get your message!'
+            except BadHeaderError:
+                info["info"] = 'Sorry, we have errors!'
+                info["success"] = False
+                return HttpResponse('Invalid header found')
+            return render(request, 'xbrand/contact.html', {'info': info})
+    else:
+        form = ContactForm()
+        return render(request, 'xbrand/contact.html', {'form': form})

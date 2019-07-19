@@ -25,21 +25,38 @@
 					<p>+48 570 402 118</p>
 					<p>branded.clothing.pl@gmail.com</p>
 					<div class="contact-social">
-						<a href="#"><i class="fa fa-facebook"></i></a>
-						<a href="#"><i class="fa fa-twitter"></i></a>
+						<a href=""><i class="fa fa-facebook"></i></a>
+						<a href=""><i class="fa fa-twitter"></i></a>
 						<a href="https://www.instagram.com/xbrand_pl/" class="instagram"><i class="fa fa-instagram"></i></a>
 					</div>
-					<form class="contact-form">
-						<input type="text" placeholder="Your name">
-						<input type="text" placeholder="Your e-mail">
-						<input type="text" placeholder="Subject">
-						<textarea placeholder="Message"></textarea>
-						<button class="site-btn">SEND NOW</button>
+					<form id="contact-form" class="contact-form" method="POST" action="">
+						{% csrf_token %}
+						<input type="text" name="name" placeholder="Your name / Twoje imię">
+						<input type="text" name="email" placeholder="Your e-mail / Poczta">
+						<input type="number" name="phone" placeholder="Your number / Twój numer">
+						<input type="text" name="subject" placeholder="Subject">
+						<textarea name="message" placeholder="Write what thing you want to buy / Napisz, co chcesz kupić"></textarea>
+						<button type="submit" class="site-btn" data-loading-text="Loading...">SEND NOW</button>
 					</form>
+
+					{% if info %}
+						{% if info.success %}
+							<div class="alert alert-success" role="alert">
+								{{ info.info }}
+							</div>
+						{% else %}
+							<div class="alert alert-danger" role="alert">
+								{{ info.info }}
+							</div>
+						{% endif %}
+					{% endif %}
 				</div>
 			</div>
 		</div>
-		<div class="map"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4613.1343428420405!2d21.008213869846376!3d52.23025456677458!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ecc8ca852ebbf%3A0x3227e0030caec017!2sPlac+Defilad!5e0!3m2!1sru!2spl!4v1563549280257!5m2!1sru!2spl" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe></div>
+		<div class="map">
+			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4613.1343428420405!2d21.008213869846376!3d52.23025456677458!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ecc8ca852ebbf%3A0x3227e0030caec017!2sPlac+Defilad!5e0!3m2!1sru!2spl!4v1563549280257!5m2!1sru!2spl" width="600" height="450" frameborder="0" style="border:0" allowfullscreen>
+			</iframe>
+		</div>
 	</section>
 	<!-- Contact section end -->
 
