@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from .forms import *
 from .models import *
 from django.core.mail import send_mail, BadHeaderError
@@ -8,21 +8,35 @@ from datetime import datetime, timedelta
 # Create your views here.
 
 def home(request):
-    return render(request, 'xbrand/index.html')
+    banner = Banner.objects.all()
+    return render(request, 'xbrand/index.html', {'banners': banner})
 
-def product(request):
-    return render(request, 'xbrand/product.html')
+def product(request, pk, kind):
+    if kind == 'women':     
+        product = get_object_or_404(WomenProduct, pk=pk)
+    elif kind == 'men':
+        product = get_object_or_404(MenProduct, pk=pk)
+    elif kind == 'bag':
+        product = get_object_or_404(BagProduct, pk=pk)
+    return render(request, 'xbrand/product.html', {'product': product})
 
 def men(request):
-    return render(request, 'xbrand/men.html')
+    newProducts = MenProduct.objects.filter(date_created__range=[datetime.now() - timedelta(days=7), datetime.now()])
+    products = MenProduct.objects.all()
+    banner = Banner.objects.all()
+    return render(request, 'xbrand/men.html', {'products': products, 'news': newProducts, 'banners': banner})
 
 def women(request):
-    newProducts = WomenProduct.objects.filter(date_created = datetime.now() - timedelta(days=7))
-    products = WomenProduct.objects.all() 
-    return render(request, 'xbrand/women.html', {'products': products})
+    newProducts = WomenProduct.objects.filter(date_created__range=[datetime.now() - timedelta(days=7), datetime.now()])
+    products = WomenProduct.objects.all()
+    banner = Banner.objects.all() 
+    return render(request, 'xbrand/women.html', {'products': products, 'news': newProducts, 'banners': banner})
 
 def jewelry(request):
-    return render(request, 'xbrand/bag.html')
+    newProducts = BagProduct.objects.filter(date_created__range=[datetime.now() - timedelta(days=7), datetime.now()])
+    products = BagProduct.objects.all()
+    banner = Banner.objects.all() 
+    return render(request, 'xbrand/bag.html', {'products': products, 'news': newProducts, 'banners': banner})
 
 def contact(request):
     return render(request, 'xbrand/contact.html')

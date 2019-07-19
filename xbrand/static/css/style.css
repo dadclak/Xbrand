@@ -2178,6 +2178,13 @@ ol {
 	height: 100%;
 }
 
+.ban {
+	width: 400px;
+	height: 100px;
+	background-color: #962525;
+	color: rgb(231, 255, 13);
+}
+
 /* ----------------
   Responsive
 ---------------------*/

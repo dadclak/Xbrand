@@ -1,29 +1,52 @@
 {% extends 'xbrand/base/base.html' %}
 {% load staticfiles %}
+
 {% block content %}
         <!-- product section -->
 	<section class="product-section">
             <div class="container">
                 <div class="back-link">
-                    <a href="./category.html"> &lt;&lt; Back to Category</a>
+                    <a href="{% url 'home' %}"> &lt;&lt; Cofnij</a>
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="product-pic-zoom">
-                            <img class="product-big-img" src="{% static 'img/single-product/1.jpg' %}" alt="">
+                            <img class="product-big-img" src="{{ product.image_1.url }}" alt="">
                         </div>
                         <div class="product-thumbs" tabindex="1" style="overflow: hidden; outline: none;">
                             <div class="product-thumbs-track">
-                                <div class="pt active" data-imgbigurl="img/single-product/1.jpg"><img src="{% static 'img/single-product/thumb-1.jpg' %}" alt=""></div>
-                                <div class="pt" data-imgbigurl="img/single-product/2.jpg"><img src="{% static 'img/single-product/thumb-2.jpg' %}" alt=""></div>
-                                <div class="pt" data-imgbigurl="img/single-product/3.jpg"><img src="{% static 'img/single-product/thumb-3.jpg' %}" alt=""></div>
-                                <div class="pt" data-imgbigurl="img/single-product/4.jpg"><img src="{% static 'img/single-product/thumb-4.jpg' %}" alt=""></div>
+                                {% if product.image_1 %}
+                                    <div class="pt active" data-imgbigurl="{{ product.image_1.url }}">
+                                        <img src="{{ product.image_1.url }}" alt="">
+                                    </div>
+                                {% endif %}
+                                {% if product.image_2 %}
+                                    <div class="pt" data-imgbigurl="{{ product.image_2.url }}">
+                                        <img src="{{ product.image_2.url }}" alt="">
+                                    </div>
+                                {% endif %}
+                                {% if product.image_3 %}
+                                    <div class="pt" data-imgbigurl="{{ product.image_3.url }}">
+                                        <img src="{{ product.image_3.url }}" alt="">
+                                    </div>
+                                {% endif %}
+                                {% if product.image_4 %}
+                                    <div class="pt" data-imgbigurl="{{ product.image_4.url }}">
+                                        <img src="{{ product.image_4.url }}" alt="">
+                                    </div>
+                                {% endif %}
+                                {% if product.image_5 %}
+                                    <div class="pt" data-imgbigurl="{{ product.image_5.url }}">
+                                        <img src="{{ product.image_5.url }}" alt="">
+                                    </div>
+                                {% endif %}
+
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-6 product-details">
-                        <h2 class="p-title">White peplum top</h2>
-                        <h3 class="p-price">PLN 39.90</h3>
+                        <h2 class="p-title">{{ product.title }}</h2>
+                        <h3 class="p-price">PLN {{ product.price }}</h3>
                         <h4 class="p-stock">Available: <span>In Stock</span></h4>
                         <div class="p-rating">
                             <i class="fa fa-star-o"></i>
@@ -45,6 +68,16 @@
                         </div>
                         <input type="submit" class="site-btn" value="Zamówić">
                         <div id="accordion" class="accordion-area">
+                            <div class="panel">
+                                <div class="panel-header" id="headingOne">
+                                    <button class="panel-link active" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">information</button>
+                                </div>
+                                <div id="collapse1" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                    <div class="panel-body">
+                                        <p>{{ product.description }}</p>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="panel">
                                 <div class="panel-header" id="headingTwo">
                                     <button class="panel-link" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">Opłata</button>
