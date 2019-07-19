@@ -58,7 +58,7 @@ def contact(request):
                         "\nPhone: %s"
                         "\nMessage: %s"
                         % (name, email, phone, message),
-                        'xbrand@gmail.com', recipients
+                        'kozanchyn.vladeo@gmail.com', recipients
                 )
                 info["info"] = 'Successful! We get your message!'
             except BadHeaderError:
