@@ -24,7 +24,7 @@
                                 <i class="flaticon-bag"></i>
                                 <span></span>
                             </div>
-                            <a href="#">Shopping Cart</a>
+                            <a href="{% url 'contact' %}">Shopping Cart</a>
                         </div>
                     </div>
                 </div>
@@ -51,23 +51,26 @@
 <!-- Hero section -->
 <section class="hero-section">
 		<div class="hero-slider owl-carousel">
-			<div class="hs-item set-bg" data-setbg="{% static 'img/bg-2.jpg' %}">
+            {% for banner in banners %}
+			<div class="hs-item set-bg" data-setbg="{{ banner.image.url }}">
 				<div class="container">
 					<div class="row">
 						<div class="col-xl-6 col-lg-7 text-white">
-							<span>New Arrivals</span>
-							<h2>denim jackets</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p>
+							<span>{{ banner.tesis }}</span>
+							<h2>{{ banner.title }}</h2>
+							<p>{{ banner.description }}</p>
 							<a href="{% url 'contact' %}" class="site-btn sb-line">Zamówić</a>
 						</div>
 					</div>
 					<div class="offer-card text-white">
 						<span>od</span>
-						<h2>$29</h2>
+                        <h3>{{ banner.price }}</h3>
+                        <h4>PLN</h4>
 						<p>Kupuj już</p>
 					</div>
 				</div>
-			</div>
+            </div>
+            {% endfor %}
 		</div>
 		<div class="container">
 			<div class="slide-num-holder" id="snh-1"></div>
